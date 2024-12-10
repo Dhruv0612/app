@@ -1,0 +1,86 @@
+[
+    {
+        "USERNAME": "jlrcccm2", 
+        "SOC_VERSION": "", 
+        "LAPTOP_NAME": "jlrcccm2", 
+        "LAPTOP_TAG": "CVTWLN3", 
+        "IP": "10.216.13.63", 
+        "VIP_VERSION": "", 
+        "ADSP_VERSION": "", 
+        "AVAILABILITY": "red", 
+        "PASSWORD": "jlr@4321", 
+        "RIG_CONNECTED": "S2R - Rig"
+    }, 
+    {
+        "USERNAME": "jlrcccm3", 
+        "SOC_VERSION": "", 
+        "LAPTOP_NAME": "jlrcccm3", 
+        "LAPTOP_TAG": "6NL3N13", 
+        "IP": "10.216.13.44", 
+        "VIP_VERSION": "", 
+        "ADSP_VERSION": "", 
+        "AVAILABILITY": "green", 
+        "PASSWORD": "jlr@1234", 
+        "RIG_CONNECTED": "Can be made (sanity rig)"
+    }, 
+    {
+        "USERNAME": "jlrcccm", 
+        "SOC_VERSION": "", 
+        "LAPTOP_NAME": "jlrcccm", 
+        "LAPTOP_TAG": "4GYX9K3", 
+        "IP": "10.216.13.99", 
+        "VIP_VERSION": "", 
+        "ADSP_VERSION": "", 
+        "AVAILABILITY": "red", 
+        "PASSWORD": "jlr@1234", 
+        "RIG_CONNECTED": "JEA-Rig"
+    }, 
+    {
+        "USERNAME": "jlrcccm3", 
+        "SOC_VERSION": "", 
+        "LAPTOP_NAME": "jlrcccm3-sarvesh", 
+        "LAPTOP_TAG": "CJ9XSV3", 
+        "IP": "10.216.13.20", 
+        "VIP_VERSION": "", 
+        "ADSP_VERSION": "", 
+        "AVAILABILITY": "green", 
+        "PASSWORD": "jlr@4321", 
+        "RIG_CONNECTED": "Dev rig (Connected near android rig)"
+    }, 
+    {
+        "USERNAME": "jlrcccm-android", 
+        "SOC_VERSION": "", 
+        "LAPTOP_NAME": "jlr-cccm-android", 
+        "LAPTOP_TAG": "2TL8QV3", 
+        "IP": "10.216.13.71", 
+        "VIP_VERSION": "", 
+        "ADSP_VERSION": "", 
+        "AVAILABILITY": "green", 
+        "PASSWORD": "", 
+        "RIG_CONNECTED": "Discovery (Android team)"
+    }, 
+    {
+        "USERNAME": "initial", 
+        "SOC_VERSION": "", 
+        "LAPTOP_NAME": "initial-bala", 
+        "LAPTOP_TAG": "JS09453", 
+        "IP": "10.216.13.55", 
+        "VIP_VERSION": "", 
+        "ADSP_VERSION": "", 
+        "AVAILABILITY": "green", 
+        "PASSWORD": "Bu1ldadm", 
+        "RIG_CONNECTED": "Dev rig (High table) - bala rig"
+    }, 
+    {
+        "USERNAME": "initial", 
+        "SOC_VERSION": "", 
+        "LAPTOP_NAME": "initial", 
+        "LAPTOP_TAG": "D1C9QV3", 
+        "IP": "10.216.13.106", 
+        "VIP_VERSION": "", 
+        "ADSP_VERSION": "", 
+        "AVAILABILITY": "green", 
+        "PASSWORD": "Bu1ldadm", 
+        "RIG_CONNECTED": "Sanity rig (near snehashis table)"
+    }
+]

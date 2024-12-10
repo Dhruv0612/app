@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laptop Data</title>
+    <style>
+        @font-face {
+            font-family: 'afacad';
+            src: url('https://fonts.cdnfonts.com/s/15318/Afacad.woff') format('woff');
+        }
+        body {
+            font-family: 'afacad', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f171e;
+            color: #ffffff;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #232f3e;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            margin: 0;
+            font-size: 28px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #232f3e;
+        }
+        table, th, td {
+            border: 1px solid #444;
+        }
+        th, td {
+            padding: 16px;
+            text-align: center;
+        }
+        th {
+            background-color: #37475a;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #2a3b4d;
+        }
+        input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 4px 0;
+            background-color: #37475a;
+            color: #ffffff;
+            border: none;
+        }
+        input[readonly] {
+            background-color: #2a3b4d;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #e8491d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d73814;
+        }
+
+        .play-button {
+            background-color: #e8491d;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        .play-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid white;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            color: black;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+	.color-box {
+            width: 100%;
+            height: 40px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+          .container {
+              width: 100%;
+              padding-left: 10px;
+              padding-right: 10px;
+          }
+          header h1 {
+              text-align: center;
+              width: auto;
+              padding-left: .5em;
+              padding-right: .5em;
+          }
+          table,
+          th,
+          td,
+          tr,
+          tbody,
+          thead,
+          tfoot {
+              display: block;
+              width: auto;
+          }
+          th,
+          td {
+              text-align: right;
+              padding-left: .5em;
+              padding-right: .5em;
+          }
+          th::before,
+          td::before {
+              content: attr(data-label);
+              float: left;
+              font-weight: bold;
+          }
+      }
+
+    </style>
+    <script>
+        function showPrompt(index) {
+            fetch(`/play/${index}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const modal = document.getElementById('myModal');
+                const modalContent = document.getElementById('modal-content');
+                modalContent.innerHTML = `
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Row Data</h2>
+                    <p>Laptop Name: ${data.LAPTOP_NAME}</p>
+                    <p>Laptop Tag: ${data.LAPTOP_TAG}</p>
+                    <p>IP: ${data.IP}</p>
+                    <p>Rig Connected: ${data.RIG_CONNECTED}</p>
+                    <p>ADSP Version: ${data.ADSP_VERSION}</p>
+                    <p>VIP Version: ${data.VIP_VERSION}</p>
+                    <p>SOC Version: ${data.SOC_VERSION}</p>
+                    <form action="/submit" method="post">
+                        <input type="hidden" name="index" value="${index}">
+                        <label for="build_link">Build Link:</label>
+                        <input type="text" id="build_link" name="build_link"><br><br>
+                        <button type="submit">Submit</button>
+                    </form>
+                `;
+                modal.style.display = "block";
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+      <div class="container">
+          <h1>Laptop Data Management and Flasher</h1>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>Laptop Data</h1>
+      <table>
+          <thead>
+              <tr>
+                  <th>Laptop Name</th>
+                  <th>Laptop Tag</th>
+                  <th>IP Address</th>
+                  <th>Purpose</th>
+                  <th>ADSP Version</th>
+                  <th>VIP Version</th>
+                  <th>SOC Version</th>
+                  <th>Download</th>
+		  <th>Flash</th>
+                  <th>Availablity</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for item in data %}
+              <tr>
+                  <form action="/update/{{ loop.index0 }}" method="post">
+                      <td data-label="LAPTOP NAME"><input type="text" name="LAPTOP_NAME" value="{{ item.LAPTOP_NAME }}" readonly></td>
+                      <td data-label="LAPTOP TAG"><input type="text" name="LAPTOP_TAG" value="{{ item.LAPTOP_TAG }}" readonly></td>
+                      <td data-label="IP of the laptop"><input type="text" name="IP" value="{{ item.IP }}" readonly></td>
+                      <td data-label="RIG CONNECTED"><input type="text" name="RIG_CONNECTED" value="{{ item.RIG_CONNECTED }}"></td>
+                      <td data-label="ADSP VERSION"><input type="text" name="ADSP_VERSION" value="{{ item.ADSP_VERSION }}"></td>
+                      <td data-label="VIP VERSION"><input type="text" name="VIP_VERSION" value="{{ item.VIP_VERSION }}"></td>
+                      <td data-label="SOC VERSION"><input type="text" name="SOC_VERSION" value="{{ item.SOC_VERSION }}"></td>
+                      <td data-label="DOWNLOAD"><button type="button" class="play-button" onclick="showPrompt({{ loop.index0 }})"></button></td>
+		      <td data-label="FLASH"><button type="button" onclick="runFlash({{ loop.index0 }})">Flash</button></td>
+                      <td data-label="Available">
+			      <div class="color-box" style="background-color: {{ item.AVAILABILITY }};" onclick="toggleColor(this, {{ loop.index0 }})"></div>
+                      </td>
+                  </form>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content" id="modal-content">
+      </div>
+    </div>
+
+    <script>
+        function toggleColor(colorBox, index) {
+	    let newColor = colorBox.style.backgroundColor === 'green' ? 'red' : 'green';
+	    colorBox.style.backgroundColor = newColor;
+
+            fetch(`/update_availability/${index}`, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: `availability=${newColor}` });
+        }
+
+	document.addEventListener('DOMContentLoaded', function() { 
+	    document.querySelectorAll('.color-box').forEach((box, idx) => { 
+		fetch(`/get_availability/${idx}`) 
+		.then(response => response.json()) 
+		.then(data => { 
+		    box.style.backgroundColor = data.availability; 
+		}); 
+	    }); 
+	});
+
+	function runFlash(index) { 
+	    fetch(`/flash/${index}`, { 
+	        method: 'POST' 
+	    }) 
+	    .then(response => response.json()) 
+	    .then(data => { 
+		if (data.status === 'success') { 
+		    alert('Flashing started successfully!'); 
+		} else { 
+		    alert('Failed to start flashing.'); 
+		} 
+	    });
+	}
+
+    </script>
+
+</body>
+</html>
