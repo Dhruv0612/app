@@ -74,7 +74,8 @@
         button:hover {
             background-color: #d73814;
         }
-
+	
+	.flash-button,
         .play-button {
             background-color: #e8491d;
             border: none;
@@ -86,7 +87,8 @@
             width: 40px;
             height: 40px;
         }
-
+	
+	.flash-button::before,
         .play-button::before {
             content: "";
             position: absolute;
@@ -258,7 +260,7 @@
                       <td data-label="VIP VERSION"><input type="text" name="VIP_VERSION" value="{{ item.VIP_VERSION }}"></td>
                       <td data-label="SOC VERSION"><input type="text" name="SOC_VERSION" value="{{ item.SOC_VERSION }}"></td>
                       <td data-label="DOWNLOAD"><button type="button" class="play-button" onclick="showPrompt({{ loop.index0 }})"></button></td>
-		      <td data-label="FLASH"><button type="button" onclick="runFlash({{ loop.index0 }})">Flash</button></td>
+		      <td data-label="FLASH"><button type="button" class="flash-button" onclick="runFlash({{ loop.index0 }})"></button></td>
                       <td data-label="Available">
 			      <div class="color-box" style="background-color: {{ item.AVAILABILITY }};" onclick="toggleColor(this, {{ loop.index0 }})"></div>
                       </td>
